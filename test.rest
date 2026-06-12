@@ -1,0 +1,124 @@
+### ===========================
+### 1. Register a new user
+### ===========================
+
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "username": "akshatt",
+    "password": "test123"
+}
+
+###
+
+### ===========================
+### 2. Register same user (should fail - 400)
+### ===========================
+
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "username": "akshatt",
+    "password": "test123"
+}
+
+###
+
+### ===========================
+### 3. Sign in (copy the token from response!)
+### ===========================
+
+POST http://localhost:3000/signin
+Content-Type: application/json
+
+{
+    "username": "akshatt",
+    "password": "test123"
+}
+
+###
+
+### ===========================
+### 4. Sign in with wrong password (should fail - 400)
+### ===========================
+
+POST http://localhost:3000/signin
+Content-Type: application/json
+
+{
+    "username": "akshatt",
+    "password": "wrongpassword"
+}
+
+###
+
+### ===========================
+### 5. Create a project
+### ===========================
+
+POST http://localhost:3000/projects
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFrc2hhdHQiLCJ1c2VyX0lkIjoiNmEyNzIwOTBhOTZlYzA5MmJjNjQzODQ5IiwiaWF0IjoxNzgwOTQ5MTQ4fQ.PyuUmqqpodh6hl7NbEqBynDihAmOzMgpANbnJfBcE0Y
+
+{
+    "name": "My First App",
+    "description": "A todo app built with AI"
+}
+
+###
+
+### ===========================
+### 6. Get all projects
+### ===========================
+
+GET http://localhost:3000/projects
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFrc2hhdHQiLCJ1c2VyX0lkIjoiNmEyNzIwOTBhOTZlYzA5MmJjNjQzODQ5IiwiaWF0IjoxNzgwOTQ5MTQ4fQ.PyuUmqqpodh6hl7NbEqBynDihAmOzMgpANbnJfBcE0Y
+
+###
+
+### ===========================
+### 7. Update a project
+### ===========================
+
+PUT http://localhost:3000/projects/6a272103a96ec092bc64384d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFrc2hhdHQiLCJ1c2VyX0lkIjoiNmEyNzIwOTBhOTZlYzA5MmJjNjQzODQ5IiwiaWF0IjoxNzgwOTQ5MTQ4fQ.PyuUmqqpodh6hl7NbEqBynDihAmOzMgpANbnJfBcE0Y
+
+{
+    "name": "My Updated App",
+    "description": "Updated description"
+}
+
+###
+
+### ===========================
+### 8. Delete a project
+### ===========================
+
+DELETE http://localhost:3000/projects/6a272103a96ec092bc64384d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFrc2hhdHQiLCJ1c2VyX0lkIjoiNmEyNzIwOTBhOTZlYzA5MmJjNjQzODQ5IiwiaWF0IjoxNzgwOTQ5MTQ4fQ.PyuUmqqpodh6hl7NbEqBynDihAmOzMgpANbnJfBcE0Y
+
+###
+
+### ===========================
+### 9. Generate app with AI (SSE streaming)
+### ===========================
+
+POST http://localhost:3000/projects/6a272103a96ec092bc64384d/generate
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFrc2hhdHQiLCJ1c2VyX0lkIjoiNmEyNzIwOTBhOTZlYzA5MmJjNjQzODQ5IiwiaWF0IjoxNzgwOTQ5MTQ4fQ.PyuUmqqpodh6hl7NbEqBynDihAmOzMgpANbnJfBcE0Y
+
+{
+    "prompt": "Build me a simple todo app with add and delete functionality"
+}
+
+###
+
+### ===========================
+### 10. Preview generated app
+### Open this URL in a browser to see the preview!
+### ===========================
+
+GET http://localhost:3000/preview/6a272103a96ec092bc64384d
